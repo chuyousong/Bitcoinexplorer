@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.cys.bitcoinexplorer.dao.TransactionsMapper">
+  <resultMap id="BaseResultMap" type="io.cys.bitcoinexplorer.po.Transactions">
+    <id column="txhash" jdbcType="CHAR" property="txhash" />
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="blockhash" jdbcType="CHAR" property="blockhash" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="amount" jdbcType="DOUBLE" property="amount" />
+    <result column="size" jdbcType="INTEGER" property="size" />
+    <result column="weight" jdbcType="REAL" property="weight" />
+    <result column="confirmations" jdbcType="INTEGER" property="confirmations" />
+    <result column="total_input" jdbcType="DOUBLE" property="totalInput" />
+    <result column="total_output" jdbcType="DOUBLE" property="totalOutput" />
+    <result column="fees" jdbcType="DOUBLE" property="fees" />
+    <result column="feeper_byte" jdbcType="DOUBLE" property="feeperByte" />
+    <result column="feeper_weightunit" jdbcType="DOUBLE" property="feeperWeightunit" />
+    <result column="btctransacted" jdbcType="DOUBLE" property="btctransacted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    txhash, id, blockhash, time, amount, size, weight, confirmations, total_input, total_output, 
+    fees, feeper_byte, feeper_weightunit, btctransacted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_transactions
+    where txhash = #{txhash,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_transactions
+    where txhash = #{txhash,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="io.cys.bitcoinexplorer.po.Transactions">
+    insert into tb_transactions (txhash, id, blockhash, 
+      time, amount, size, 
+      weight, confirmations, total_input, 
+      total_output, fees, feeper_byte, 
+      feeper_weightunit, btctransacted)
+    values (#{txhash,jdbcType=CHAR}, #{id,jdbcType=INTEGER}, #{blockhash,jdbcType=CHAR}, 
+      #{time,jdbcType=TIMESTAMP}, #{amount,jdbcType=DOUBLE}, #{size,jdbcType=INTEGER}, 
+      #{weight,jdbcType=REAL}, #{confirmations,jdbcType=INTEGER}, #{totalInput,jdbcType=DOUBLE}, 
+      #{totalOutput,jdbcType=DOUBLE}, #{fees,jdbcType=DOUBLE}, #{feeperByte,jdbcType=DOUBLE}, 
+      #{feeperWeightunit,jdbcType=DOUBLE}, #{btctransacted,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="io.cys.bitcoinexplorer.po.Transactions">
+    insert into tb_transactions
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="txhash != null">
+        txhash,
+      </if>
+      <if test="id != null">
+        id,
+      </if>
+      <if test="blockhash != null">
+        blockhash,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="size != null">
+        size,
+      </if>
+      <if test="weight != null">
+        weight,
+      </if>
+      <if test="confirmations != null">
+        confirmations,
+      </if>
+      <if test="totalInput != null">
+        total_input,
+      </if>
+      <if test="totalOutput != null">
+        total_output,
+      </if>
+      <if test="fees != null">
+        fees,
+      </if>
+      <if test="feeperByte != null">
+        feeper_byte,
+      </if>
+      <if test="feeperWeightunit != null">
+        feeper_weightunit,
+      </if>
+      <if test="btctransacted != null">
+        btctransacted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="txhash != null">
+        #{txhash,jdbcType=CHAR},
+      </if>
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="blockhash != null">
+        #{blockhash,jdbcType=CHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="size != null">
+        #{size,jdbcType=INTEGER},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=REAL},
+      </if>
+      <if test="confirmations != null">
+        #{confirmations,jdbcType=INTEGER},
+      </if>
+      <if test="totalInput != null">
+        #{totalInput,jdbcType=DOUBLE},
+      </if>
+      <if test="totalOutput != null">
+        #{totalOutput,jdbcType=DOUBLE},
+      </if>
+      <if test="fees != null">
+        #{fees,jdbcType=DOUBLE},
+      </if>
+      <if test="feeperByte != null">
+        #{feeperByte,jdbcType=DOUBLE},
+      </if>
+      <if test="feeperWeightunit != null">
+        #{feeperWeightunit,jdbcType=DOUBLE},
+      </if>
+      <if test="btctransacted != null">
+        #{btctransacted,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="io.cys.bitcoinexplorer.po.Transactions">
+    update tb_transactions
+    <set>
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="blockhash != null">
+        blockhash = #{blockhash,jdbcType=CHAR},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="size != null">
+        size = #{size,jdbcType=INTEGER},
+      </if>
+      <if test="weight != null">
+        weight = #{weight,jdbcType=REAL},
+      </if>
+      <if test="confirmations != null">
+        confirmations = #{confirmations,jdbcType=INTEGER},
+      </if>
+      <if test="totalInput != null">
+        total_input = #{totalInput,jdbcType=DOUBLE},
+      </if>
+      <if test="totalOutput != null">
+        total_output = #{totalOutput,jdbcType=DOUBLE},
+      </if>
+      <if test="fees != null">
+        fees = #{fees,jdbcType=DOUBLE},
+      </if>
+      <if test="feeperByte != null">
+        feeper_byte = #{feeperByte,jdbcType=DOUBLE},
+      </if>
+      <if test="feeperWeightunit != null">
+        feeper_weightunit = #{feeperWeightunit,jdbcType=DOUBLE},
+      </if>
+      <if test="btctransacted != null">
+        btctransacted = #{btctransacted,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where txhash = #{txhash,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="io.cys.bitcoinexplorer.po.Transactions">
+    update tb_transactions
+    set id = #{id,jdbcType=INTEGER},
+      blockhash = #{blockhash,jdbcType=CHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      amount = #{amount,jdbcType=DOUBLE},
+      size = #{size,jdbcType=INTEGER},
+      weight = #{weight,jdbcType=REAL},
+      confirmations = #{confirmations,jdbcType=INTEGER},
+      total_input = #{totalInput,jdbcType=DOUBLE},
+      total_output = #{totalOutput,jdbcType=DOUBLE},
+      fees = #{fees,jdbcType=DOUBLE},
+      feeper_byte = #{feeperByte,jdbcType=DOUBLE},
+      feeper_weightunit = #{feeperWeightunit,jdbcType=DOUBLE},
+      btctransacted = #{btctransacted,jdbcType=DOUBLE}
+    where txhash = #{txhash,jdbcType=CHAR}
+  </update>
+</mapper>
