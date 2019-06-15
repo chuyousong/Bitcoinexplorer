@@ -17,7 +17,7 @@ public class Block {
 
     private Integer height;
 
-    private Date time;
+    private String time;
 
     private String relayedy;
 
@@ -95,11 +95,11 @@ public class Block {
         this.height = height;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

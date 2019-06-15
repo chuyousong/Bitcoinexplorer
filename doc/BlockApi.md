@@ -9,16 +9,16 @@ response:
     {
         "blockhash": "00000000000000000024b3d4793dcbba032d3fc28a0d77a37d466b956fb68aa5",
         "height": 580644,
-        "time": "2019-06-15T00:26:37.349+0000",
-        "relayedy": "AntPool",
+        "time": "2019-06-15 10:02:32",
+        "relayedy": "SlushPool",
         "numberOfTransactions": 2867,
         "size": 1257767
     },
     {
         "blockhash": "00000000000000000001ce5f88601a311f1c73c0073a15fe4e5956da7fbcd78b",
         "height": 580643,
-        "time": "2019-06-15T00:26:37.349+0000",
-        "relayedy": null,
+        "time": "2019-06-15 10:02:32",
+        "relayedy": "AntPool",
         "numberOfTransactions": 538,
         "size": 1322496
     }
@@ -52,7 +52,7 @@ response:
         "estimatedTransactionVolume": 1114,
         "transactionFees": 0.8105428,
         "height": 580770,
-        "time": "2019-06-15T01:31:46.679+0000",
+        "time": "2019-06-15 10:03:13",
         "relayedy": "SlushPool",
         "difficulty": 7409399249090.25,
         "bits": 388365571,
@@ -72,7 +72,7 @@ response:
         "estimatedTransactionVolume": 96,
         "transactionFees": 0.18751074,
         "height": 580769,
-        "time": "2019-06-15T01:31:46.679+0000",
+        "time": "2019-06-15 10:03:13",
         "relayedy": "AntPool",
         "difficulty": 7409399249090.25,
         "bits": 388365571,
@@ -85,7 +85,6 @@ response:
         "nextBlock": "00000000000000000025c889729b9f97cb3fc683742608fd61c7e481a7e2c951"
     }
 ]
-
 ```
 
 | ResponseField     |     Type |   Description   | 
@@ -116,7 +115,6 @@ url: /block/getByHeight?height={height}
 
 response:
 ```json
- 
 [
     {
         "blockhash": "00000000000000000025c889729b9f97cb3fc683742608fd61c7e481a7e2c951",
@@ -126,7 +124,7 @@ response:
         "estimatedTransactionVolume": 1114,
         "transactionFees": 0.8105428,
         "height": 580770,
-        "time": "2019-06-15T01:35:59.816+0000",
+        "time": "2019-06-15 10:03:36",
         "relayedy": "SlushPool",
         "difficulty": 7409399249090.25,
         "bits": 388365571,
@@ -146,7 +144,7 @@ response:
         "estimatedTransactionVolume": 96,
         "transactionFees": 0.18751074,
         "height": 580769,
-        "time": "2019-06-15T01:35:59.816+0000",
+        "time": "2019-06-15 10:03:36",
         "relayedy": "AntPool",
         "difficulty": 7409399249090.25,
         "bits": 388365571,

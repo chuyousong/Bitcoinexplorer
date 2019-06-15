@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,7 +23,9 @@ public class BlockController {
         BlockListDTO blockListDTO = new BlockListDTO();
         blockListDTO.setBlockhash("00000000000000000024b3d4793dcbba032d3fc28a0d77a37d466b956fb68aa5");
         blockListDTO.setHeight(580644);
-        blockListDTO.setTime(new Date());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        String format = simpleDateFormat.format(new Date());
+        blockListDTO.setTime(format);
         blockListDTO.setNumberOfTransactions(2867);
         blockListDTO.setSize(1257767);
         blockListDTO.setRelayedy("SlushPool");
@@ -31,11 +34,14 @@ public class BlockController {
         BlockListDTO blockListDTO2 = new BlockListDTO();
         blockListDTO2.setBlockhash("00000000000000000001ce5f88601a311f1c73c0073a15fe4e5956da7fbcd78b");
         blockListDTO2.setHeight(580643);
-        blockListDTO2.setTime(new Date());
-        blockListDTO.setRelayedy("AntPool");
+        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        String format1 = simpleDateFormat1.format(new Date());
+        blockListDTO2.setTime(format1);
+        blockListDTO2.setRelayedy("AntPool");
         blockListDTO2.setNumberOfTransactions(538);
         blockListDTO2.setSize(1322496);
         blockListDTOS.add(blockListDTO2);
+
         return blockListDTOS;
     }
 
@@ -49,7 +55,9 @@ public class BlockController {
         blockGetDTO.setEstimatedTransactionVolume((int) 1114.30298937);
         blockGetDTO.setTransactionFees(0.8105428);
         blockGetDTO.setHeight(580770);
-        blockGetDTO.setTime(new Date());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        String format = simpleDateFormat.format(new Date());
+        blockGetDTO.setTime(format);
         blockGetDTO.setRelayedy("SlushPool");
         blockGetDTO.setDifficulty(7409399249090.25);
         blockGetDTO.setBits(388365571);
@@ -69,7 +77,9 @@ public class BlockController {
         blockGetDTO2.setEstimatedTransactionVolume((int) 96.41705109);
         blockGetDTO2.setTransactionFees(0.18751074);
         blockGetDTO2.setHeight(580769);
-        blockGetDTO2.setTime(new Date());
+        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        String format1 = simpleDateFormat1.format(new Date());
+        blockGetDTO2.setTime(format1);
         blockGetDTO2.setRelayedy("AntPool");
         blockGetDTO2.setDifficulty(7409399249090.25);
         blockGetDTO2.setBits(388365571);
@@ -98,7 +108,9 @@ public class BlockController {
         blockGetDTO.setEstimatedTransactionVolume((int) 1114.30298937);
         blockGetDTO.setTransactionFees(0.8105428);
         blockGetDTO.setHeight(580770);
-        blockGetDTO.setTime(new Date());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        String format = simpleDateFormat.format(new Date());
+        blockGetDTO.setTime(format);
         blockGetDTO.setRelayedy("SlushPool");
         blockGetDTO.setDifficulty(7409399249090.25);
         blockGetDTO.setBits(388365571);
@@ -118,7 +130,9 @@ public class BlockController {
         blockGetDTO2.setEstimatedTransactionVolume((int) 96.41705109);
         blockGetDTO2.setTransactionFees(0.18751074);
         blockGetDTO2.setHeight(580769);
-        blockGetDTO2.setTime(new Date());
+        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        String format1 = simpleDateFormat1.format(new Date());
+        blockGetDTO2.setTime(format1);
         blockGetDTO2.setRelayedy("AntPool");
         blockGetDTO2.setDifficulty(7409399249090.25);
         blockGetDTO2.setBits(388365571);
