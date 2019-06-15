@@ -40,8 +40,10 @@ public class BlockController {
     }
 
     @GetMapping("/getByBlockhash")
-    public BlockGetDTO getByBlockhash(@RequestParam String blockhash){
+    public ArrayList<BlockGetDTO> getByBlockhash(@RequestParam String blockhash){
+        ArrayList<BlockGetDTO> blockGetDTOS = new ArrayList<>();
         BlockGetDTO blockGetDTO = new BlockGetDTO();
+        blockGetDTO.setBid(1);
         blockGetDTO.setNumberOfTransactions(2867);
         blockGetDTO.setOutputTotal(14903.18388402);
         blockGetDTO.setEstimatedTransactionVolume((int) 1114.30298937);
@@ -61,6 +63,7 @@ public class BlockController {
 
 
         BlockGetDTO blockGetDTO2 = new BlockGetDTO();
+        blockGetDTO2.setBid(2);
         blockGetDTO2.setNumberOfTransactions(538);
         blockGetDTO2.setOutputTotal(1647.45939539);
         blockGetDTO2.setEstimatedTransactionVolume((int) 96.41705109);
@@ -78,13 +81,18 @@ public class BlockController {
         blockGetDTO2.setBlockhash("000000000000000000101451f546c34c144066c1f7d4e360de321a0bbf43dedb");
         blockGetDTO2.setPreviousBlock("00000000000000000006a0673f90d900aefe5f7bef705f7dbdabe9b7077e06dd");
         blockGetDTO2.setNextBlock("00000000000000000025c889729b9f97cb3fc683742608fd61c7e481a7e2c951");
-        return  blockGetDTO2;
+
+        blockGetDTOS.add(blockGetDTO);
+        blockGetDTOS.add(blockGetDTO2);
+        return  blockGetDTOS;
     }
 
 
     @GetMapping("/getByHeight")
-    public BlockGetDTO getByHeight(@RequestParam Integer height){
+    public ArrayList<BlockGetDTO> getByHeight(@RequestParam Integer height){
+        ArrayList<BlockGetDTO> blockGetDTOS = new ArrayList<>();
         BlockGetDTO blockGetDTO = new BlockGetDTO();
+        blockGetDTO.setBid(1);
         blockGetDTO.setNumberOfTransactions(2867);
         blockGetDTO.setOutputTotal(14903.18388402);
         blockGetDTO.setEstimatedTransactionVolume((int) 1114.30298937);
@@ -101,9 +109,10 @@ public class BlockController {
         blockGetDTO.setBlockReward(12.5);
         blockGetDTO.setBlockhash("00000000000000000025c889729b9f97cb3fc683742608fd61c7e481a7e2c951");
         blockGetDTO.setPreviousBlock("000000000000000000101451f546c34c144066c1f7d4e360de321a0bbf43dedb");
-
+        blockGetDTO.getNextBlock();
 
         BlockGetDTO blockGetDTO2 = new BlockGetDTO();
+        blockGetDTO2.setBid(2);
         blockGetDTO2.setNumberOfTransactions(538);
         blockGetDTO2.setOutputTotal(1647.45939539);
         blockGetDTO2.setEstimatedTransactionVolume((int) 96.41705109);
@@ -121,7 +130,10 @@ public class BlockController {
         blockGetDTO2.setBlockhash("000000000000000000101451f546c34c144066c1f7d4e360de321a0bbf43dedb");
         blockGetDTO2.setPreviousBlock("00000000000000000006a0673f90d900aefe5f7bef705f7dbdabe9b7077e06dd");
         blockGetDTO2.setNextBlock("00000000000000000025c889729b9f97cb3fc683742608fd61c7e481a7e2c951");
-        return  blockGetDTO2;
+
+        blockGetDTOS.add(blockGetDTO);
+        blockGetDTOS.add(blockGetDTO2);
+        return  blockGetDTOS;
     }
 
 }
