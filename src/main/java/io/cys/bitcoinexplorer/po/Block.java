@@ -11,7 +11,7 @@ public class Block {
 
     private Double outputTotal;
 
-    private Integer estimatedTransactionVolume;
+    private double estimatedTransactionVolume;
 
     private Double transactionFees;
 
@@ -25,7 +25,7 @@ public class Block {
 
     private Integer bits;
 
-    private Integer size;
+    private double size;
 
     private Float weight;
 
@@ -71,7 +71,7 @@ public class Block {
         this.outputTotal = outputTotal;
     }
 
-    public Integer getEstimatedTransactionVolume() {
+    public Double getEstimatedTransactionVolume() {
         return estimatedTransactionVolume;
     }
 
@@ -127,7 +127,7 @@ public class Block {
         this.bits = bits;
     }
 
-    public Integer getSize() {
+    public Double getSize() {
         return size;
     }
 

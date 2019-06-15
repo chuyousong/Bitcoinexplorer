@@ -16,6 +16,9 @@ public class BlockListDTO {
 
     private Integer size;
 
+    public BlockListDTO() {
+    }
+
     public String getBlockhash() {
         return blockhash;
     }
@@ -32,13 +35,6 @@ public class BlockListDTO {
         this.height = height;
     }
 
-    public Date getTime() {
-        return time;
-    }
-
-    public void setTime(Date time) {
-        this.time = time;
-    }
 
     public String getRelayedy() {
         return relayedy;
@@ -62,5 +58,14 @@ public class BlockListDTO {
 
     public void setSize(Integer size) {
         this.size = size;
+    }
+
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
     }
 }
