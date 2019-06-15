@@ -201,9 +201,9 @@ response:
 | :--------------: | :--------:| :------: |
 |    txhash|   String |  交易hash |
 |    time|   Date |  交易时间 |
-|    amount|   String |  交易 |
+|    amount|   String |  交易的量 |
 |    age|   Double |  交易时间 |
-|    amountUSA|   Integer |  交易的量 |
+|    amountUSA|   Integer |  交易的量转美元 |
     
 
 
