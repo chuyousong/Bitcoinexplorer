@@ -10,7 +10,9 @@ public class BlockListDTO {
 
     private Date time;
 
-    private Short txsize;
+    private String relayedy;
+
+    private Integer numberOfTransactions;
 
     private Integer size;
 
@@ -38,12 +40,20 @@ public class BlockListDTO {
         this.time = time;
     }
 
-    public Short getTxsize() {
-        return txsize;
+    public String getRelayedy() {
+        return relayedy;
     }
 
-    public void setTxsize(Short txsize) {
-        this.txsize = txsize;
+    public void setRelayedy(String relayedy) {
+        this.relayedy = relayedy;
+    }
+
+    public Integer getNumberOfTransactions() {
+        return numberOfTransactions;
+    }
+
+    public void setNumberOfTransactions(Integer numberOfTransactions) {
+        this.numberOfTransactions = numberOfTransactions;
     }
 
     public Integer getSize() {
