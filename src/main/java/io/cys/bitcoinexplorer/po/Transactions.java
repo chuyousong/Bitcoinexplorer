@@ -15,7 +15,7 @@ public class Transactions {
 
     private Integer size;
 
-    private Float weight;
+    private Integer weight;
 
     private Integer confirmations;
 
@@ -79,11 +79,11 @@ public class Transactions {
         this.size = size;
     }
 
-    public Float getWeight() {
+    public Integer getWeight() {
         return weight;
     }
 
-    public void setWeight(Float weight) {
+    public void setWeight(Integer weight) {
         this.weight = weight;
     }
 
