@@ -32,18 +32,25 @@ public class TempRpcController {
         return  blockByHash.toJSONString();
     }
 
-  /*  @GetMapping("/textBalance")
-    public Double textBalance() throws Throwable {
-        String address = "mwt9LmdatUcksGQ8eEbKbbPnczUmTq4G9h";
-        Double balanceAmount = bitcoinJsonRpcApi.getBalance(address);
+    @GetMapping("/textListunspent")
+    public Double textListunspent() throws Throwable {
+        String address = "1PGFqEzfmQch1gKD3ra4k18PNj3tTUUSqg";
+        Double balanceAmount = bitcoinJsonRpcApi.getListunspent(address);
         return balanceAmount;
     }
-*/
+
 
     @GetMapping("/textByHeight")
     public String textByHeight(Integer height) throws Throwable {
         JSONObject blockByHash = bitcoinJsonRpcApi.getBlockByHash("000000000000025f54e531a47239f394e6a7f07af3b9761f279cb86c5884d763");
         return  blockByHash.toJSONString();
     }
+
+    @GetMapping("/textAddressinfo")
+    public String textAddressinfo(String address) throws Throwable {
+        JSONObject addressinfo = bitcoinJsonRpcApi.getAddressinfo("1PSSGeFHDnKNxiEyFrD1wcEaHr9hrQDDWc");
+        return  addressinfo.toJSONString();
+    }
+
 
 }

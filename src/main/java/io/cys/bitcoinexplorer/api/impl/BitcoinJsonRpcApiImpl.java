@@ -52,13 +52,20 @@ public class BitcoinJsonRpcApiImpl implements BitcoinJsonRpcApi {
         return result;
     }
 
-   /* @Override
-    public Double getBalance(String address) throws Throwable {
-        JSONArray balances = jsonRpcHttpClient.invoke("getbalance", new Object[]{6, 9999999, new String[]{address}}, JSONArray.class);
-        JSONObject balance = balances.getJSONObject(0);
-        Double amount = balance.getDouble("amount");
+    @Override
+    public JSONObject getAddressinfo(String address) throws Throwable {
+        JSONObject getblock = jsonRpcHttpClient.invoke("getaddressinfo", new Object[]{address}, JSONObject.class);
+        return getblock;
+    }
+
+
+    @Override
+    public Double getListunspent(String address) throws Throwable {
+        JSONArray balances = jsonRpcHttpClient.invoke("listunspent", new Object[]{6, 999999999, new String[]{address}}, JSONArray.class);
+        JSONObject jsonObject = balances.getJSONObject(0);
+        Double amount = jsonObject.getDouble("amount");
         return amount;
-    }*/
+    }
 
 
 }
