@@ -8,7 +8,7 @@ public class BlockListDTO {
 
     private Integer height;
 
-    private String time;
+    private Long time;
 
     private String relayedy;
 
@@ -61,11 +61,11 @@ public class BlockListDTO {
     }
 
 
-    public String getTime() {
+    public Long getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(Long time) {
         this.time = time;
     }
 }

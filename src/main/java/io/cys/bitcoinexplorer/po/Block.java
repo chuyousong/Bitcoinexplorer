@@ -17,7 +17,7 @@ public class Block {
 
     private Integer height;
 
-    private String time;
+    private Long time;
 
     private String relayedy;
 
@@ -95,13 +95,7 @@ public class Block {
         this.height = height;
     }
 
-    public String getTime() {
-        return time;
-    }
 
-    public void setTime(String time) {
-        this.time = time;
-    }
 
     public String getRelayedy() {
         return relayedy;
@@ -181,5 +175,13 @@ public class Block {
 
     public void setNextBlock(String nextBlock) {
         this.nextBlock = nextBlock == null ? null : nextBlock.trim();
+    }
+
+    public Long getTime() {
+        return time;
+    }
+
+    public void setTime(Long time) {
+        this.time = time;
     }
 }
