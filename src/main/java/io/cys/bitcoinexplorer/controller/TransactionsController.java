@@ -42,11 +42,10 @@ public class TransactionsController {
         TransactionListDTO transactionDTO = new TransactionListDTO();
         transactionDTO.setTxhash("185b2b0a8f19300ed078e0a0e54a8eb2098f9644e62fdd8827d9af6b3f4caeca");
         transactionDTO.setBlockhash("00000000000000000025c889729b9f97cb3fc683742608fd61c7e481a7e2c951");
-        transactionDTO.setId(1);
         transactionDTO.setTime(new Date());
         transactionDTO.setAmount(0.00128782);
         transactionDTO.setSize(592);
-        transactionDTO.setWeight(1396);
+        //transactionDTO.setWeight(24.0);
         transactionDTO.setConfirmations(3521);
         transactionDTO.setTotalInput(0.01700723);
         transactionDTO.setTotalOutput(0.01673581);

@@ -5,8 +5,6 @@ import java.util.Date;
 public class Transactions {
     private String txhash;
 
-    private Integer id;
-
     private String blockhash;
 
     private Date time;
@@ -15,7 +13,7 @@ public class Transactions {
 
     private Integer size;
 
-    private Integer weight;
+    private Float weight;
 
     private Integer confirmations;
 
@@ -37,14 +35,6 @@ public class Transactions {
 
     public void setTxhash(String txhash) {
         this.txhash = txhash == null ? null : txhash.trim();
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getBlockhash() {
@@ -79,11 +69,11 @@ public class Transactions {
         this.size = size;
     }
 
-    public Integer getWeight() {
+    public Float getWeight() {
         return weight;
     }
 
-    public void setWeight(Integer weight) {
+    public void setWeight(Float weight) {
         this.weight = weight;
     }
 

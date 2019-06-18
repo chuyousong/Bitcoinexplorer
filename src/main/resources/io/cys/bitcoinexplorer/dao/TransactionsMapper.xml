@@ -3,7 +3,6 @@
 <mapper namespace="io.cys.bitcoinexplorer.dao.TransactionsMapper">
   <resultMap id="BaseResultMap" type="io.cys.bitcoinexplorer.po.Transactions">
     <id column="txhash" jdbcType="CHAR" property="txhash" />
-    <result column="id" jdbcType="INTEGER" property="id" />
     <result column="blockhash" jdbcType="CHAR" property="blockhash" />
     <result column="time" jdbcType="TIMESTAMP" property="time" />
     <result column="amount" jdbcType="DOUBLE" property="amount" />
@@ -18,7 +17,7 @@
     <result column="btctransacted" jdbcType="DOUBLE" property="btctransacted" />
   </resultMap>
   <sql id="Base_Column_List">
-    txhash, id, blockhash, time, amount, size, weight, confirmations, total_input, total_output, 
+    txhash, blockhash, time, amount, size, weight, confirmations, total_input, total_output, 
     fees, feeper_byte, feeper_weightunit, btctransacted
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -32,25 +31,22 @@
     where txhash = #{txhash,jdbcType=CHAR}
   </delete>
   <insert id="insert" parameterType="io.cys.bitcoinexplorer.po.Transactions">
-    insert into tb_transactions (txhash, id, blockhash, 
-      time, amount, size, 
-      weight, confirmations, total_input, 
-      total_output, fees, feeper_byte, 
-      feeper_weightunit, btctransacted)
-    values (#{txhash,jdbcType=CHAR}, #{id,jdbcType=INTEGER}, #{blockhash,jdbcType=CHAR}, 
-      #{time,jdbcType=TIMESTAMP}, #{amount,jdbcType=DOUBLE}, #{size,jdbcType=INTEGER}, 
-      #{weight,jdbcType=REAL}, #{confirmations,jdbcType=INTEGER}, #{totalInput,jdbcType=DOUBLE}, 
-      #{totalOutput,jdbcType=DOUBLE}, #{fees,jdbcType=DOUBLE}, #{feeperByte,jdbcType=DOUBLE}, 
-      #{feeperWeightunit,jdbcType=DOUBLE}, #{btctransacted,jdbcType=DOUBLE})
+    insert into tb_transactions (txhash, blockhash, time, 
+      amount, size, weight, confirmations, 
+      total_input, total_output, fees, 
+      feeper_byte, feeper_weightunit, btctransacted
+      )
+    values (#{txhash,jdbcType=CHAR}, #{blockhash,jdbcType=CHAR}, #{time,jdbcType=TIMESTAMP}, 
+      #{amount,jdbcType=DOUBLE}, #{size,jdbcType=INTEGER}, #{weight,jdbcType=REAL}, #{confirmations,jdbcType=INTEGER}, 
+      #{totalInput,jdbcType=DOUBLE}, #{totalOutput,jdbcType=DOUBLE}, #{fees,jdbcType=DOUBLE}, 
+      #{feeperByte,jdbcType=DOUBLE}, #{feeperWeightunit,jdbcType=DOUBLE}, #{btctransacted,jdbcType=DOUBLE}
+      )
   </insert>
   <insert id="insertSelective" parameterType="io.cys.bitcoinexplorer.po.Transactions">
     insert into tb_transactions
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="txhash != null">
         txhash,
-      </if>
-      <if test="id != null">
-        id,
       </if>
       <if test="blockhash != null">
         blockhash,
@@ -93,9 +89,6 @@
       <if test="txhash != null">
         #{txhash,jdbcType=CHAR},
       </if>
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
       <if test="blockhash != null">
         #{blockhash,jdbcType=CHAR},
       </if>
@@ -137,9 +130,6 @@
   <update id="updateByPrimaryKeySelective" parameterType="io.cys.bitcoinexplorer.po.Transactions">
     update tb_transactions
     <set>
-      <if test="id != null">
-        id = #{id,jdbcType=INTEGER},
-      </if>
       <if test="blockhash != null">
         blockhash = #{blockhash,jdbcType=CHAR},
       </if>
@@ -181,8 +171,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="io.cys.bitcoinexplorer.po.Transactions">
     update tb_transactions
-    set id = #{id,jdbcType=INTEGER},
-      blockhash = #{blockhash,jdbcType=CHAR},
+    set blockhash = #{blockhash,jdbcType=CHAR},
       time = #{time,jdbcType=TIMESTAMP},
       amount = #{amount,jdbcType=DOUBLE},
       size = #{size,jdbcType=INTEGER},

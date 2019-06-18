@@ -30,7 +30,7 @@ public class BlockController {
     // 新增块的信息
     @GetMapping("/getRecentBlocks")
     public void getRecentBlocks() {
-        String tempBlockhash = "0000000000000044576dac23f0170a4443b0b4f694266bef450d503378b1c58f";
+        String tempBlockhash = "000000000003122fadf6f79730acec77754e30a8d0faf5a609a6c5029a7ddd26";
         bitcoinService.syncBlock(tempBlockhash);
     }
 

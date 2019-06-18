@@ -235,7 +235,6 @@
     where blockhash = #{blockhash,jdbcType=CHAR}
   </update>
 
-
   <!--sql-->
   <select id="selectBlocksList" resultMap="BaseResultMap">
     select
@@ -244,7 +243,5 @@
     order by height desc
     limit 5
   </select>
-
-
 
 </mapper>
