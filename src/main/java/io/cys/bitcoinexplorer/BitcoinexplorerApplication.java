@@ -9,7 +9,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @MapperScan("io.cys.bitcoinexplorer.dao")
 @EnableFeignClients("io.cys.bitcoinexplorer.api")
-@EnableScheduling
 public class BitcoinexplorerApplication {
 
     public static void main(String[] args) {
