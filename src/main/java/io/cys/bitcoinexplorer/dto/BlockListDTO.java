@@ -1,14 +1,16 @@
 package io.cys.bitcoinexplorer.dto;
 
+import io.cys.bitcoinexplorer.po.Block;
+
 import java.util.Date;
 
-public class BlockListDTO {
+public class BlockListDTO extends Block {
 
     private String blockhash;
 
     private Integer height;
 
-    private Long time;
+    private Date time;
 
     private String relayedy;
 
@@ -61,11 +63,11 @@ public class BlockListDTO {
     }
 
 
-    public Long getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(Long time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 }

@@ -6,15 +6,14 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `tb_block`;
 CREATE TABLE `tb_block`
 (
-  `bid`  int(11),
   `blockhash`  char(64) NOT NULL,
   `number_of_transactions` int(20),
   `output_total`    double ,
-  `estimated_transaction_volume` int(30) ,
+  `estimated_transaction_volume` double ,
   `transaction_fees`     double ,
   `height`     int(11) NOT NULL,
   `time`       datetime,
-  `relayedy`     varchar(50) NOT NULL,
+  `relayedy`     varchar(50) ,
   `difficulty` double,
   `bits`     int(30),
   `size`       int(30),

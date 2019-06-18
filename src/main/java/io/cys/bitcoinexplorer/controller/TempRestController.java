@@ -17,7 +17,7 @@ import java.util.HashMap;
 @RestController
 @RequestMapping("/temp")
 @EnableAutoConfiguration
-public class TempController {
+public class TempRestController {
 
     @Autowired
     private BitcoinRestApi bitcoinRestApi;

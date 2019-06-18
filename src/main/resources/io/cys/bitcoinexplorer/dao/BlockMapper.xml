@@ -3,7 +3,6 @@
 <mapper namespace="io.cys.bitcoinexplorer.dao.BlockMapper">
   <resultMap id="BaseResultMap" type="io.cys.bitcoinexplorer.po.Block">
     <id column="blockhash" jdbcType="CHAR" property="blockhash" />
-    <result column="bid" jdbcType="INTEGER" property="bid" />
     <result column="number_of_transactions" jdbcType="INTEGER" property="numberOfTransactions" />
     <result column="output_total" jdbcType="DOUBLE" property="outputTotal" />
     <result column="estimated_transaction_volume" jdbcType="INTEGER" property="estimatedTransactionVolume" />
@@ -12,19 +11,19 @@
     <result column="time" jdbcType="TIMESTAMP" property="time" />
     <result column="relayedy" jdbcType="VARCHAR" property="relayedy" />
     <result column="difficulty" jdbcType="DOUBLE" property="difficulty" />
-    <result column="bits" jdbcType="INTEGER" property="bits" />
+    <result column="bits" jdbcType="VARCHAR" property="bits" />
     <result column="size" jdbcType="INTEGER" property="size" />
     <result column="weight" jdbcType="REAL" property="weight" />
-    <result column="version" jdbcType="VARCHAR" property="version" />
+    <result column="version" jdbcType="INTEGER" property="version" />
     <result column="nonce" jdbcType="INTEGER" property="nonce" />
     <result column="block_reward" jdbcType="DOUBLE" property="blockReward" />
     <result column="previous_block" jdbcType="CHAR" property="previousBlock" />
     <result column="next_block" jdbcType="CHAR" property="nextBlock" />
   </resultMap>
   <sql id="Base_Column_List">
-    blockhash, bid, number_of_transactions, output_total, estimated_transaction_volume, 
-    transaction_fees, height, time, relayedy, difficulty, bits, size, weight, version, 
-    nonce, block_reward, previous_block, next_block
+    blockhash, number_of_transactions, output_total, estimated_transaction_volume, transaction_fees, 
+    height, time, relayedy, difficulty, bits, size, weight, version, nonce, block_reward, 
+    previous_block, next_block
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -37,29 +36,26 @@
     where blockhash = #{blockhash,jdbcType=CHAR}
   </delete>
   <insert id="insert" parameterType="io.cys.bitcoinexplorer.po.Block">
-    insert into tb_block (blockhash, bid, number_of_transactions, 
-      output_total, estimated_transaction_volume, 
-      transaction_fees, height, time, 
-      relayedy, difficulty, bits, 
-      size, weight, version, 
-      nonce, block_reward, previous_block, 
-      next_block)
-    values (#{blockhash,jdbcType=CHAR}, #{bid,jdbcType=INTEGER}, #{numberOfTransactions,jdbcType=INTEGER}, 
-      #{outputTotal,jdbcType=DOUBLE}, #{estimatedTransactionVolume,jdbcType=INTEGER}, 
-      #{transactionFees,jdbcType=DOUBLE}, #{height,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, 
-      #{relayedy,jdbcType=VARCHAR}, #{difficulty,jdbcType=DOUBLE}, #{bits,jdbcType=INTEGER}, 
-      #{size,jdbcType=INTEGER}, #{weight,jdbcType=REAL}, #{version,jdbcType=VARCHAR}, 
-      #{nonce,jdbcType=INTEGER}, #{blockReward,jdbcType=DOUBLE}, #{previousBlock,jdbcType=CHAR}, 
-      #{nextBlock,jdbcType=CHAR})
+    insert into tb_block (blockhash, number_of_transactions, output_total, 
+      estimated_transaction_volume, transaction_fees, 
+      height, time, relayedy, 
+      difficulty, bits, size, 
+      weight, version, nonce, 
+      block_reward, previous_block, next_block
+      )
+    values (#{blockhash,jdbcType=CHAR}, #{numberOfTransactions,jdbcType=INTEGER}, #{outputTotal,jdbcType=DOUBLE}, 
+      #{estimatedTransactionVolume,jdbcType=INTEGER}, #{transactionFees,jdbcType=DOUBLE}, 
+      #{height,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, #{relayedy,jdbcType=VARCHAR}, 
+      #{difficulty,jdbcType=DOUBLE}, #{bits,jdbcType=VARCHAR}, #{size,jdbcType=INTEGER}, 
+      #{weight,jdbcType=REAL}, #{version,jdbcType=INTEGER}, #{nonce,jdbcType=INTEGER}, 
+      #{blockReward,jdbcType=DOUBLE}, #{previousBlock,jdbcType=CHAR}, #{nextBlock,jdbcType=CHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="io.cys.bitcoinexplorer.po.Block">
     insert into tb_block
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="blockhash != null">
         blockhash,
-      </if>
-      <if test="bid != null">
-        bid,
       </if>
       <if test="numberOfTransactions != null">
         number_of_transactions,
@@ -114,9 +110,6 @@
       <if test="blockhash != null">
         #{blockhash,jdbcType=CHAR},
       </if>
-      <if test="bid != null">
-        #{bid,jdbcType=INTEGER},
-      </if>
       <if test="numberOfTransactions != null">
         #{numberOfTransactions,jdbcType=INTEGER},
       </if>
@@ -142,7 +135,7 @@
         #{difficulty,jdbcType=DOUBLE},
       </if>
       <if test="bits != null">
-        #{bits,jdbcType=INTEGER},
+        #{bits,jdbcType=VARCHAR},
       </if>
       <if test="size != null">
         #{size,jdbcType=INTEGER},
@@ -151,7 +144,7 @@
         #{weight,jdbcType=REAL},
       </if>
       <if test="version != null">
-        #{version,jdbcType=VARCHAR},
+        #{version,jdbcType=INTEGER},
       </if>
       <if test="nonce != null">
         #{nonce,jdbcType=INTEGER},
@@ -170,9 +163,6 @@
   <update id="updateByPrimaryKeySelective" parameterType="io.cys.bitcoinexplorer.po.Block">
     update tb_block
     <set>
-      <if test="bid != null">
-        bid = #{bid,jdbcType=INTEGER},
-      </if>
       <if test="numberOfTransactions != null">
         number_of_transactions = #{numberOfTransactions,jdbcType=INTEGER},
       </if>
@@ -198,7 +188,7 @@
         difficulty = #{difficulty,jdbcType=DOUBLE},
       </if>
       <if test="bits != null">
-        bits = #{bits,jdbcType=INTEGER},
+        bits = #{bits,jdbcType=VARCHAR},
       </if>
       <if test="size != null">
         size = #{size,jdbcType=INTEGER},
@@ -207,7 +197,7 @@
         weight = #{weight,jdbcType=REAL},
       </if>
       <if test="version != null">
-        version = #{version,jdbcType=VARCHAR},
+        version = #{version,jdbcType=INTEGER},
       </if>
       <if test="nonce != null">
         nonce = #{nonce,jdbcType=INTEGER},
@@ -226,8 +216,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="io.cys.bitcoinexplorer.po.Block">
     update tb_block
-    set bid = #{bid,jdbcType=INTEGER},
-      number_of_transactions = #{numberOfTransactions,jdbcType=INTEGER},
+    set number_of_transactions = #{numberOfTransactions,jdbcType=INTEGER},
       output_total = #{outputTotal,jdbcType=DOUBLE},
       estimated_transaction_volume = #{estimatedTransactionVolume,jdbcType=INTEGER},
       transaction_fees = #{transactionFees,jdbcType=DOUBLE},
@@ -235,14 +224,27 @@
       time = #{time,jdbcType=TIMESTAMP},
       relayedy = #{relayedy,jdbcType=VARCHAR},
       difficulty = #{difficulty,jdbcType=DOUBLE},
-      bits = #{bits,jdbcType=INTEGER},
+      bits = #{bits,jdbcType=VARCHAR},
       size = #{size,jdbcType=INTEGER},
       weight = #{weight,jdbcType=REAL},
-      version = #{version,jdbcType=VARCHAR},
+      version = #{version,jdbcType=INTEGER},
       nonce = #{nonce,jdbcType=INTEGER},
       block_reward = #{blockReward,jdbcType=DOUBLE},
       previous_block = #{previousBlock,jdbcType=CHAR},
       next_block = #{nextBlock,jdbcType=CHAR}
     where blockhash = #{blockhash,jdbcType=CHAR}
   </update>
+
+
+  <!--sql-->
+  <select id="selectBlocksList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_block
+    order by height desc
+    limit 5
+  </select>
+
+
+
 </mapper>

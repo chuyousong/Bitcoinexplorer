@@ -6,7 +6,6 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `tb_transactions`;
 CREATE TABLE `tb_transactions`
 (
-  `id`       int(11),
   `txhash`  char(64) NOT NULL,
   `blockhash`  char(64) NOT NULL,
   `time`       datetime,

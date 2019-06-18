@@ -17,19 +17,19 @@ public class Block {
 
     private Integer height;
 
-    private Long time;
+    private Date time;
 
     private String relayedy;
 
     private Double difficulty;
 
-    private Integer bits;
+    private String bits;
 
-    private double size;
+    private Integer size;
 
     private Float weight;
 
-    private String version;
+    private Integer version;
 
     private Integer nonce;
 
@@ -75,7 +75,7 @@ public class Block {
         return estimatedTransactionVolume;
     }
 
-    public void setEstimatedTransactionVolume(Integer estimatedTransactionVolume) {
+    public void setEstimatedTransactionVolume(Double estimatedTransactionVolume) {
         this.estimatedTransactionVolume = estimatedTransactionVolume;
     }
 
@@ -113,15 +113,15 @@ public class Block {
         this.difficulty = difficulty;
     }
 
-    public Integer getBits() {
+    public String getBits() {
         return bits;
     }
 
-    public void setBits(Integer bits) {
+    public void setBits(String bits) {
         this.bits = bits;
     }
 
-    public Double getSize() {
+    public Integer getSize() {
         return size;
     }
 
@@ -137,13 +137,6 @@ public class Block {
         this.weight = weight;
     }
 
-    public String getVersion() {
-        return version;
-    }
-
-    public void setVersion(String version) {
-        this.version = version == null ? null : version.trim();
-    }
 
     public Integer getNonce() {
         return nonce;
@@ -177,11 +170,19 @@ public class Block {
         this.nextBlock = nextBlock == null ? null : nextBlock.trim();
     }
 
-    public Long getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(Long time) {
+    public void setTime(Date time) {
         this.time = time;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 }
