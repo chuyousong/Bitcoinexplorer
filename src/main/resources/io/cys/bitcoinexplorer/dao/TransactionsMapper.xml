@@ -194,4 +194,10 @@
         order by time desc
         limit 5
     </select>
+  <select id="getListBytransactionsHash" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_transactions
+    where txhash = #{txhash,jdbcType=CHAR}
+  </select>
 </mapper>

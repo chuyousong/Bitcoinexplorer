@@ -1,5 +1,6 @@
 package io.cys.bitcoinexplorer.controller;
 
+import io.cys.bitcoinexplorer.dto.TransactionGetListDTO;
 import io.cys.bitcoinexplorer.dto.TransactionListDTO;
 import io.cys.bitcoinexplorer.po.Transactions;
 import io.cys.bitcoinexplorer.service.TransactionsService;
@@ -43,11 +44,18 @@ public class TransactionsController {
     }
 
 
-
+    // 查询交易表的详情
     @GetMapping("/transactionGetList")
     public List<TransactionListDTO>  transactionGetList(){
         List<TransactionListDTO> transactions = transactionsService.getListByTransactions();
         return transactions;
+    }
+
+    // 通过交易的hash来进行页面的详情查找
+    @GetMapping("/transactionHash")
+    public List<TransactionGetListDTO>  transactionHash(String txhash){
+        List<TransactionGetListDTO>  transactionsHash = transactionsService.getListBytransactionsHash(txhash);
+        return transactionsHash;
     }
 
 

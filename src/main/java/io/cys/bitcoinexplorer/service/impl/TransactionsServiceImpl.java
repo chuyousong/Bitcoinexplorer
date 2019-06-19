@@ -1,6 +1,7 @@
 package io.cys.bitcoinexplorer.service.impl;
 
 import io.cys.bitcoinexplorer.dao.TransactionsMapper;
+import io.cys.bitcoinexplorer.dto.TransactionGetListDTO;
 import io.cys.bitcoinexplorer.dto.TransactionListDTO;
 import io.cys.bitcoinexplorer.po.Transactions;
 import io.cys.bitcoinexplorer.service.TransactionsService;
@@ -20,5 +21,10 @@ public class TransactionsServiceImpl implements TransactionsService {
     public List<TransactionListDTO> getListByTransactions() {
         List<TransactionListDTO> transactionsList = transactionsMapper.getTransactions();
         return transactionsList;
+    }
+
+    @Override
+    public List<TransactionGetListDTO> getListBytransactionsHash(String txhash) {
+        return transactionsMapper.getListBytransactionsHash(txhash);
     }
 }
