@@ -34,11 +34,18 @@ public class BlockController {
         bitcoinService.syncBlock(tempBlockhash);
     }
 
-    // 查询块的信息
+    // 查询块的所以详情信息
     @GetMapping("/getSelectListBlocks")
-    public List<BlockListDTO> getSelectListBlocks() {
-        List<BlockListDTO> seleBlock = bitcoinService.getSelectListBlockhash();
+    public List<BlockGetDTO> getSelectListBlocks() {
+        List<BlockGetDTO> seleBlock = bitcoinService.getSelectListBlockhash();
         return seleBlock;
+    }
+
+    // 通过高度height来进行块的详细查询
+    @GetMapping("/getByHeight")
+    public Block getByHeight(@RequestParam Integer height){
+        Block blockGetHeight = bitcoinService.getListByHeight(height);
+        return blockGetHeight;
     }
 
 }

@@ -7,6 +7,7 @@ import io.cys.bitcoinexplorer.api.BitcoinRestApi;
 import io.cys.bitcoinexplorer.dao.BlockMapper;
 import io.cys.bitcoinexplorer.dao.TransactionDetailMapper;
 import io.cys.bitcoinexplorer.dao.TransactionsMapper;
+import io.cys.bitcoinexplorer.dto.BlockGetDTO;
 import io.cys.bitcoinexplorer.dto.BlockListDTO;
 import io.cys.bitcoinexplorer.enumeration.TxDetailType;
 import io.cys.bitcoinexplorer.po.Block;
@@ -151,12 +152,17 @@ public class BitcoinServiceImpl implements BitcoinService {
 
         }
     }
-
-
     @Override
-    public List<BlockListDTO> getSelectListBlockhash() {
-        List<BlockListDTO> blocks = blockMapper.selectBlocksList();
+    public List<BlockGetDTO> getSelectListBlockhash() {
+        List<BlockGetDTO> blocks = blockMapper.selectBlocksList();
         return blocks;
     }
+
+    @Override   // 通过height来获取块的详情
+    public Block getListByHeight(Integer height) {
+
+        return blockMapper.getListByHeight(height);
+    }
+
 
 }

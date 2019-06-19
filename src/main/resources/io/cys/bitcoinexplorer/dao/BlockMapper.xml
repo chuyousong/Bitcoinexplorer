@@ -243,5 +243,10 @@
     order by height desc
     limit 5
   </select>
-
+  <select id="getListByHeight" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_block
+    where height = #{height,jdbcType=CHAR}
+  </select>
 </mapper>

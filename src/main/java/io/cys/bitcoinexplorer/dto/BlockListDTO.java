@@ -4,7 +4,7 @@ import io.cys.bitcoinexplorer.po.Block;
 
 import java.util.Date;
 
-public class BlockListDTO extends Block {
+public class BlockListDTO  {
 
     private String blockhash;
 

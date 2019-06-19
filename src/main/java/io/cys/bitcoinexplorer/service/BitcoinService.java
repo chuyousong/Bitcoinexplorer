@@ -2,8 +2,10 @@ package io.cys.bitcoinexplorer.service;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import io.cys.bitcoinexplorer.dto.BlockGetDTO;
 import io.cys.bitcoinexplorer.dto.BlockListDTO;
 import io.cys.bitcoinexplorer.po.Block;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
 import java.util.List;
@@ -11,7 +13,7 @@ import java.util.List;
 public interface BitcoinService {
     void syncBlock(String blockhash) throws Throwable;
 
-    List<BlockListDTO> getSelectListBlockhash();
+    List<BlockGetDTO> getSelectListBlockhash();
 
     void syncTransactions(JSONObject txJson, String blockhash, Date time, Integer confirmations) throws Throwable;
 
@@ -21,5 +23,5 @@ public interface BitcoinService {
 
     void syncTxDetailVin(JSONArray vins,String txid) throws Throwable;
 
-
+    Block getListByHeight(@Param("height") Integer height);
 }
