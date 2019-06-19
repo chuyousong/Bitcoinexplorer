@@ -15,11 +15,11 @@ public interface BitcoinService {
 
     void syncTransactions(JSONObject txJson, String blockhash, Date time, Integer confirmations);
 
-    void syncTxDetail(JSONObject txJson);
+    void syncTxDetail(JSONObject txJson,String txid);
 
-    void syncTxDetailVout(JSONArray vouts);
+    void syncTxDetailVout(JSONArray vouts,String txid);
 
-    void syncTxDetailVin(JSONArray vins);
+    void syncTxDetailVin(JSONArray vins,String txid);
 
 
 }

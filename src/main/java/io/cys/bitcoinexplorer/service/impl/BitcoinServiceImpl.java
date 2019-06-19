@@ -4,9 +4,12 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import io.cys.bitcoinexplorer.api.BitcoinRestApi;
 import io.cys.bitcoinexplorer.dao.BlockMapper;
+import io.cys.bitcoinexplorer.dao.TransactionDetailMapper;
 import io.cys.bitcoinexplorer.dao.TransactionsMapper;
 import io.cys.bitcoinexplorer.dto.BlockListDTO;
+import io.cys.bitcoinexplorer.enumeration.TxDetailType;
 import io.cys.bitcoinexplorer.po.Block;
+import io.cys.bitcoinexplorer.po.TransactionDetail;
 import io.cys.bitcoinexplorer.po.Transactions;
 import io.cys.bitcoinexplorer.service.BitcoinService;
 import org.slf4j.Logger;
@@ -34,6 +37,9 @@ public class BitcoinServiceImpl implements BitcoinService {
 
     @Autowired
     private TransactionsMapper transactionsMapper;
+
+    @Autowired
+    private TransactionDetailMapper transactionDetailMapper;
 
     @Override
     @Async
@@ -68,8 +74,56 @@ public class BitcoinServiceImpl implements BitcoinService {
             }
             tempBlockhash = block.getNextBlock();
         }
-        logger.info("结束同化");
+        logger.info("结束同步");
     }
+
+    @Override
+    @Transactional
+    public void syncTransactions(JSONObject txJson, String blockhash, Date time, Integer confirmations) {
+        Transactions transactions = new Transactions();
+        String txid = txJson.getString("txid");
+        transactions.setTxhash(txid);
+        transactions.setBlockhash(blockhash);
+        transactions.setTime(time);
+        transactions.setConfirmations(confirmations);
+        transactions.setSize(txJson.getInteger("size"));
+        transactions.setWeight(txJson.getFloat("weight"));
+        transactionsMapper.insert(transactions);
+
+        syncTxDetail(txJson,txid);
+    }
+
+    @Override
+    public void syncTxDetail(JSONObject txJson,String txid) {
+        JSONArray vouts = txJson.getJSONArray("vout");
+        syncTxDetailVout(vouts,txid);
+        JSONArray vins = txJson.getJSONArray("vin");
+        syncTxDetailVin(vins,txid);
+    }
+
+    @Override
+    public void syncTxDetailVout(JSONArray vouts,String txid) {
+        for (Object voutObj : vouts) {
+            JSONObject jsonObject = new JSONObject((LinkedHashMap) voutObj);
+            TransactionDetail txDetail = new TransactionDetail();
+            txDetail.setAmount(jsonObject.getDouble("value"));
+            txDetail.setTxhash(txid);
+            txDetail.setType((byte) TxDetailType.Receive.ordinal()); // 用枚举来展示 Type 带表 n
+            JSONObject scriptPubKey = jsonObject.getJSONObject("scriptPubKey");
+            JSONArray addresses = scriptPubKey.getJSONArray("addresses");
+            if(addresses != null){
+                txDetail.setAddress(addresses.getString(0)); // 因为addresses是数组拿取数据所以用下标
+            }
+            transactionDetailMapper.insert(txDetail);
+        }
+    }
+
+    @Override
+    public void syncTxDetailVin(JSONArray vins,String txid) {
+
+
+    }
+
 
     @Override
     public List<BlockListDTO> getSelectListBlockhash() {
@@ -79,37 +133,4 @@ public class BitcoinServiceImpl implements BitcoinService {
         return blocks;
     }
 
-    @Override
-    @Transactional
-    public void syncTransactions(JSONObject txJson, String blockhash, Date time, Integer confirmations) {
-        Transactions transactions = new Transactions();
-        transactions.setTxhash(txJson.getString("txid"));
-        transactions.setBlockhash(blockhash);
-        transactions.setTime(time);
-        transactions.setConfirmations(confirmations);
-        transactions.setSize(txJson.getInteger("size"));
-        transactions.setWeight(txJson.getFloat("weight"));
-        transactionsMapper.insert(transactions);
-       syncTxDetail(txJson);
-    }
-
-    @Override
-    public void syncTxDetail(JSONObject txJson) {
-        JSONArray vouts = txJson.getJSONArray("vout");
-        syncTxDetailVout(vouts);
-        JSONArray vins = txJson.getJSONArray("vin");
-        syncTxDetailVin(vins);
-    }
-
-    @Override
-    public void syncTxDetailVout(JSONArray vouts) {
-        for (Object voutObj : vouts) {
-            JSONObject jsonObject = new JSONObject((LinkedHashMap) voutObj);
-        }
-    }
-
-    @Override
-    public void syncTxDetailVin(JSONArray vins) {
-
-    }
 }

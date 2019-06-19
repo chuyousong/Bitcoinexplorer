@@ -1,5 +1,6 @@
 package io.cys.bitcoinexplorer.dao;
 
+import io.cys.bitcoinexplorer.dto.TransactionListDTO;
 import io.cys.bitcoinexplorer.po.Transactions;
 
 import java.util.List;
@@ -17,5 +18,5 @@ public interface TransactionsMapper {
 
     int updateByPrimaryKey(Transactions record);
 
-    List<Transactions> getTransactions();
+    List<TransactionListDTO> getTransactions();
 }

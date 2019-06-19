@@ -45,8 +45,8 @@ public class TransactionsController {
 
 
     @GetMapping("/transactionGetList")
-    public List<Transactions>  transactionGetList(){
-        List<Transactions> transactions = transactionsService.getListByTransactions();
+    public List<TransactionListDTO>  transactionGetList(){
+        List<TransactionListDTO> transactions = transactionsService.getListByTransactions();
         return transactions;
     }
 
