@@ -185,4 +185,13 @@
       btctransacted = #{btctransacted,jdbcType=DOUBLE}
     where txhash = #{txhash,jdbcType=CHAR}
   </update>
+
+    <!--sql-->
+    <select id="getTransactions"  resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_transactions
+        order by time desc
+        limit 5
+    </select>
 </mapper>

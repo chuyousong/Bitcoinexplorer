@@ -1,6 +1,9 @@
 package io.cys.bitcoinexplorer.controller;
 
 import io.cys.bitcoinexplorer.dto.TransactionListDTO;
+import io.cys.bitcoinexplorer.po.Transactions;
+import io.cys.bitcoinexplorer.service.TransactionsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +18,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/transactions")
 public class TransactionsController {
+
+    @Autowired
+    private TransactionsService transactionsService;
 
     @GetMapping("/getTransactionsDto")
     public List<TransactionListDTO> getTransactionsDto() throws ParseException {
@@ -36,27 +42,13 @@ public class TransactionsController {
         return  arrayList;
     }
 
-    @GetMapping("/transactionGetListDTO")
-    public List<TransactionListDTO> transactionGetListDTO() throws ParseException {
-        ArrayList<TransactionListDTO> arrayList=new ArrayList<>();
-        TransactionListDTO transactionDTO = new TransactionListDTO();
-        transactionDTO.setTxhash("185b2b0a8f19300ed078e0a0e54a8eb2098f9644e62fdd8827d9af6b3f4caeca");
-        transactionDTO.setBlockhash("00000000000000000025c889729b9f97cb3fc683742608fd61c7e481a7e2c951");
-        transactionDTO.setTime(new Date());
-        transactionDTO.setAmount(0.00128782);
-        transactionDTO.setSize(592);
-        //transactionDTO.setWeight(24.0);
-        transactionDTO.setConfirmations(3521);
-        transactionDTO.setTotalInput(0.01700723);
-        transactionDTO.setTotalOutput(0.01673581);
-        transactionDTO.setFees(0.00027142);
-        transactionDTO.setFeeperByte(43.707 );
-        transactionDTO.setFeeperWeightunit(17.916);
-        transactionDTO.setBtctransacted(0.00109);
-        arrayList.add(transactionDTO);
-        return  arrayList;
-    }
 
+
+    @GetMapping("/transactionGetList")
+    public List<Transactions>  transactionGetList(){
+        List<Transactions> transactions = transactionsService.getListByTransactions();
+        return transactions;
+    }
 
 
 }

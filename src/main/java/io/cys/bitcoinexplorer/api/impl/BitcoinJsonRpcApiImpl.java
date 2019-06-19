@@ -51,7 +51,7 @@ public class BitcoinJsonRpcApiImpl implements BitcoinJsonRpcApi {
         String result = jsonRpcHttpClient.invoke("getblockhash", new Object[]{height}, String.class);
         return result;
     }
-
+// 435654322
     @Override
     public JSONObject getAddressinfo(String address) throws Throwable {
         JSONObject getblock = jsonRpcHttpClient.invoke("getaddressinfo", new Object[]{address}, JSONObject.class);

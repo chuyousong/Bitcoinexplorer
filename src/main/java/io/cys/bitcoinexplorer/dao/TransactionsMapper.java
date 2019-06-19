@@ -2,6 +2,8 @@ package io.cys.bitcoinexplorer.dao;
 
 import io.cys.bitcoinexplorer.po.Transactions;
 
+import java.util.List;
+
 public interface TransactionsMapper {
     int deleteByPrimaryKey(String txhash);
 
@@ -14,4 +16,6 @@ public interface TransactionsMapper {
     int updateByPrimaryKeySelective(Transactions record);
 
     int updateByPrimaryKey(Transactions record);
+
+    List<Transactions> getTransactions();
 }
