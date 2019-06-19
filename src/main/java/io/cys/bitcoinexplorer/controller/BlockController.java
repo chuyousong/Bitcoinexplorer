@@ -29,8 +29,8 @@ public class BlockController {
 
     // 新增块的信息
     @GetMapping("/getRecentBlocks")
-    public void getRecentBlocks() {
-        String tempBlockhash = "000000000003122fadf6f79730acec77754e30a8d0faf5a609a6c5029a7ddd26";
+    public void getRecentBlocks() throws Throwable {
+        String tempBlockhash = "0000000000003719742834dc58a1c4d65cfdfebbf28def2da167999657fc7889";
         bitcoinService.syncBlock(tempBlockhash);
     }
 
