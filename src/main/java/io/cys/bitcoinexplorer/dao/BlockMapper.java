@@ -1,7 +1,6 @@
 package io.cys.bitcoinexplorer.dao;
 
 import io.cys.bitcoinexplorer.dto.BlockGetDTO;
-import io.cys.bitcoinexplorer.dto.SearchListDTO;
 import io.cys.bitcoinexplorer.po.Block;
 import org.apache.ibatis.annotations.Param;
 
@@ -24,6 +23,4 @@ public interface BlockMapper {
 
     Block getListByHeight(@Param("height") Integer height);
 
-
-    List<SearchListDTO> getSearchByTransactionDetail(@Param("height")Integer height,@Param("txhash") String txhash,@Param("address") String address);
 }

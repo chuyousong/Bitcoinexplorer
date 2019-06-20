@@ -1,6 +1,5 @@
 package io.cys.bitcoinexplorer.dao;
 
-import io.cys.bitcoinexplorer.dto.SearchListDTO;
 import io.cys.bitcoinexplorer.po.TransactionDetail;
 import org.apache.ibatis.annotations.Param;
 
@@ -19,4 +18,7 @@ public interface TransactionDetailMapper {
 
     int updateByPrimaryKey(TransactionDetail record);
 
+    List<TransactionDetail> getListransactionDetail();
+
+    List<TransactionDetail> getListBytransactionsAddress(@Param("address") String address);
 }

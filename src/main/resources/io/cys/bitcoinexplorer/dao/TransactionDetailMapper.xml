@@ -90,4 +90,19 @@
       type = #{type,jdbcType=TINYINT}
     where tx_detail_id = #{txDetailId,jdbcType=INTEGER}
   </update>
+
+  <!--sql-->
+  <select id="getListransactionDetail"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_transaction_detail
+  </select>
+
+  <select id="getListBytransactionsAddress" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_transaction_detail
+    where address = #{address,jdbcType=INTEGER}
+  </select>
+
 </mapper>

@@ -7,10 +7,7 @@ import io.cys.bitcoinexplorer.dto.BlockListDTO;
 import io.cys.bitcoinexplorer.po.Block;
 import io.cys.bitcoinexplorer.service.BitcoinService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/block")
+@CrossOrigin
 public class BlockController {
 
     @Autowired

@@ -8,8 +8,6 @@ import io.cys.bitcoinexplorer.dao.BlockMapper;
 import io.cys.bitcoinexplorer.dao.TransactionDetailMapper;
 import io.cys.bitcoinexplorer.dao.TransactionsMapper;
 import io.cys.bitcoinexplorer.dto.BlockGetDTO;
-import io.cys.bitcoinexplorer.dto.BlockListDTO;
-import io.cys.bitcoinexplorer.dto.SearchListDTO;
 import io.cys.bitcoinexplorer.enumeration.TxDetailType;
 import io.cys.bitcoinexplorer.po.Block;
 import io.cys.bitcoinexplorer.po.TransactionDetail;
@@ -22,7 +20,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -164,11 +161,6 @@ public class BitcoinServiceImpl implements BitcoinService {
         return blockMapper.getListByHeight(height);
     }
 
-    @Override
-    public List<SearchListDTO> getSearchByTransactionDetail(Integer height, String txhash, String address) {
-
-        return blockMapper.getSearchByTransactionDetail(height,txhash,address);
-    }
 
 
 }

@@ -1,9 +1,5 @@
 package io.cys.bitcoinexplorer.po;
 
-import io.cys.bitcoinexplorer.dto.SearchListDTO;
-
-import java.util.List;
-
 public class TransactionDetail {
     private Integer txDetailId;
 

@@ -3,8 +3,6 @@ package io.cys.bitcoinexplorer.service;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import io.cys.bitcoinexplorer.dto.BlockGetDTO;
-import io.cys.bitcoinexplorer.dto.BlockListDTO;
-import io.cys.bitcoinexplorer.dto.SearchListDTO;
 import io.cys.bitcoinexplorer.po.Block;
 import org.apache.ibatis.annotations.Param;
 
@@ -26,7 +24,6 @@ public interface BitcoinService {
 
     Block getListByHeight(@Param("height") Integer height);
 
-    List<SearchListDTO> getSearchByTransactionDetail(@Param("height") Integer height,@Param("txhash") String txhash,@Param("address") String address);
 }
 
 
