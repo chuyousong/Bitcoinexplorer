@@ -249,4 +249,60 @@
     from tb_block
     where height = #{height,jdbcType=CHAR}
   </select>
+
+  <resultMap id="SearchListDTO" type="io.cys.bitcoinexplorer.dto.SearchListDTO">
+    <id column="blockhash" jdbcType="CHAR" property="blockhash" />
+    <result column="number_of_transactions" jdbcType="INTEGER" property="numberOfTransactions" />
+    <result column="output_total" jdbcType="DOUBLE" property="outputTotal" />
+    <result column="estimated_transaction_volume" jdbcType="INTEGER" property="estimatedTransactionVolume" />
+    <result column="transaction_fees" jdbcType="DOUBLE" property="transactionFees" />
+    <result column="height" jdbcType="INTEGER" property="height" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="relayedy" jdbcType="VARCHAR" property="relayedy" />
+    <result column="difficulty" jdbcType="DOUBLE" property="difficulty" />
+    <result column="bits" jdbcType="VARCHAR" property="bits" />
+    <result column="size" jdbcType="INTEGER" property="size" />
+    <result column="weight" jdbcType="REAL" property="weight" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="nonce" jdbcType="INTEGER" property="nonce" />
+    <result column="block_reward" jdbcType="DOUBLE" property="blockReward" />
+    <result column="previous_block" jdbcType="CHAR" property="previousBlock" />
+    <result column="next_block" jdbcType="CHAR" property="nextBlock" />
+
+    <result column="tx_detail_id" jdbcType="INTEGER" property="txDetailId" />
+    <result column="txhash" jdbcType="CHAR" property="txhash" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="amount" jdbcType="DOUBLE" property="amount" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+
+    <result column="blockhash" jdbcType="CHAR" property="blockhash" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="amount" jdbcType="DOUBLE" property="amount" />
+    <result column="size" jdbcType="INTEGER" property="size" />
+    <result column="weight" jdbcType="REAL" property="weight" />
+    <result column="confirmations" jdbcType="INTEGER" property="confirmations" />
+    <result column="total_input" jdbcType="DOUBLE" property="totalInput" />
+    <result column="total_output" jdbcType="DOUBLE" property="totalOutput" />
+    <result column="fees" jdbcType="DOUBLE" property="fees" />
+    <result column="feeper_byte" jdbcType="DOUBLE" property="feeperByte" />
+    <result column="feeper_weightunit" jdbcType="DOUBLE" property="feeperWeightunit" />
+    <result column="btctransacted" jdbcType="DOUBLE" property="btctransacted" />
+  </resultMap>
+
+
+  <select id="getSearchByTransactionDetail"  resultMap="SearchListDTO">
+     SELECT * from tb_transaction_detail td,tb_block b ,tb_transactions t where
+      td.txhash=t.txhash and b.blockhash=t.blockhash
+    <if test="height != null">
+      AND height = #{height}
+    </if>
+    <if test="address != null">
+      AND address = #{address}
+    </if>
+    <if test="txhash != null">
+      AND t.txhash = #{txhash}
+    </if>
+  </select>
+
+
 </mapper>

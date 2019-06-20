@@ -9,6 +9,7 @@ import io.cys.bitcoinexplorer.dao.TransactionDetailMapper;
 import io.cys.bitcoinexplorer.dao.TransactionsMapper;
 import io.cys.bitcoinexplorer.dto.BlockGetDTO;
 import io.cys.bitcoinexplorer.dto.BlockListDTO;
+import io.cys.bitcoinexplorer.dto.SearchListDTO;
 import io.cys.bitcoinexplorer.enumeration.TxDetailType;
 import io.cys.bitcoinexplorer.po.Block;
 import io.cys.bitcoinexplorer.po.TransactionDetail;
@@ -160,8 +161,13 @@ public class BitcoinServiceImpl implements BitcoinService {
 
     @Override   // 通过height来获取块的详情
     public Block getListByHeight(Integer height) {
-
         return blockMapper.getListByHeight(height);
+    }
+
+    @Override
+    public List<SearchListDTO> getSearchByTransactionDetail(Integer height, String txhash, String address) {
+
+        return blockMapper.getSearchByTransactionDetail(height,txhash,address);
     }
 
 

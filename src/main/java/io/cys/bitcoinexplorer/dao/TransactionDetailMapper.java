@@ -1,6 +1,10 @@
 package io.cys.bitcoinexplorer.dao;
 
+import io.cys.bitcoinexplorer.dto.SearchListDTO;
 import io.cys.bitcoinexplorer.po.TransactionDetail;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface TransactionDetailMapper {
     int deleteByPrimaryKey(Integer txDetailId);
@@ -14,4 +18,5 @@ public interface TransactionDetailMapper {
     int updateByPrimaryKeySelective(TransactionDetail record);
 
     int updateByPrimaryKey(TransactionDetail record);
+
 }

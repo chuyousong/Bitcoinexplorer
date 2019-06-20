@@ -1,5 +1,6 @@
 package io.cys.bitcoinexplorer.service;
 
+import io.cys.bitcoinexplorer.dto.SearchListDTO;
 import io.cys.bitcoinexplorer.dto.TransactionGetListDTO;
 import io.cys.bitcoinexplorer.dto.TransactionListDTO;
 import io.cys.bitcoinexplorer.po.Transactions;
