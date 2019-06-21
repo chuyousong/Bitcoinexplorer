@@ -2,6 +2,7 @@ package io.cys.bitcoinexplorer.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import io.cys.bitcoinexplorer.api.BitcoinRestApi;
+import io.cys.bitcoinexplorer.dao.BlockMapper;
 import io.cys.bitcoinexplorer.dto.BlockGetDTO;
 import io.cys.bitcoinexplorer.dto.BlockListDTO;
 import io.cys.bitcoinexplorer.po.Block;
@@ -24,7 +25,8 @@ public class BlockController {
 
     @Autowired
     private BitcoinService bitcoinService;
-
+    @Autowired
+    private BlockMapper blockMapper;
     // 新增块的信息
     @GetMapping("/getRecentBlocks")
     public void getRecentBlocks() throws Throwable {
@@ -34,8 +36,8 @@ public class BlockController {
 
     // 查询块的所以详情信息
     @GetMapping("/getSelectListBlocks")
-    public List<BlockGetDTO> getSelectListBlocks() {
-        List<BlockGetDTO> seleBlock = bitcoinService.getSelectListBlockhash();
+    public List<BlockListDTO> getSelectListBlocks() {
+        List<BlockListDTO> seleBlock = bitcoinService.getSelectListBlockhash();
         return seleBlock;
     }
 
@@ -44,6 +46,13 @@ public class BlockController {
     public Block getByHeight(@RequestParam Integer height){
         Block blockGetHeight = bitcoinService.getListByHeight(height);
         return blockGetHeight;
+    }
+
+    // 通过blockhash来进行块的详细查询
+    @GetMapping("/getByBlockhash")
+    public Block getByBlockhash(@RequestParam String blockhash){
+        Block blockGetBlockhash = blockMapper.selectByPrimaryKey(blockhash);
+        return blockGetBlockhash;
     }
 
 }

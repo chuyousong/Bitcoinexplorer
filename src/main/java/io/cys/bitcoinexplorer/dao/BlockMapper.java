@@ -1,6 +1,7 @@
 package io.cys.bitcoinexplorer.dao;
 
 import io.cys.bitcoinexplorer.dto.BlockGetDTO;
+import io.cys.bitcoinexplorer.dto.BlockListDTO;
 import io.cys.bitcoinexplorer.po.Block;
 import org.apache.ibatis.annotations.Param;
 
@@ -19,8 +20,9 @@ public interface BlockMapper {
 
     int updateByPrimaryKey(Block record);
 
-    List<BlockGetDTO> selectBlocksList();
-
     Block getListByHeight(@Param("height") Integer height);
+
+    List<BlockListDTO> getSelectListBlockhash();
+
 
 }

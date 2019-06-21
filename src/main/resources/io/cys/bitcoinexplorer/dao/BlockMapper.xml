@@ -236,7 +236,7 @@
   </update>
 
   <!--sql-->
-  <select id="selectBlocksList" resultMap="BaseResultMap">
+  <select id="getSelectListBlockhash" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from tb_block
@@ -249,5 +249,6 @@
     from tb_block
     where height = #{height,jdbcType=CHAR}
   </select>
+
 
 </mapper>
