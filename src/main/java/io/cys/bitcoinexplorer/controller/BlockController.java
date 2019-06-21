@@ -25,8 +25,6 @@ public class BlockController {
 
     @Autowired
     private BitcoinService bitcoinService;
-    @Autowired
-    private BlockMapper blockMapper;
     // 新增块的信息
     @GetMapping("/getRecentBlocks")
     public void getRecentBlocks() throws Throwable {
@@ -47,14 +45,12 @@ public class BlockController {
         Block blockGetHeight = bitcoinService.getListByHeight(height);
         return blockGetHeight;
     }
-
     // 通过blockhash来进行块的详细查询
     @GetMapping("/getByBlockhash")
-    public Block getByBlockhash(@RequestParam String blockhash){
-        Block blockGetBlockhash = blockMapper.selectByPrimaryKey(blockhash);
+    public List<BlockGetDTO> getByBlockhash(@RequestParam String blockhash){
+        List<BlockGetDTO> blockGetBlockhash = bitcoinService.getListByBlockhash(blockhash);
         return blockGetBlockhash;
     }
-
 }
 
 

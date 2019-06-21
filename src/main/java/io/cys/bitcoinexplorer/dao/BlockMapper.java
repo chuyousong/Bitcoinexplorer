@@ -25,4 +25,5 @@ public interface BlockMapper {
     List<BlockListDTO> getSelectListBlockhash();
 
 
+    List<BlockGetDTO> getListByBlockhash(@Param("blockhash") String blockhash);
 }

@@ -169,6 +169,10 @@ public class BitcoinServiceImpl implements BitcoinService {
         return blockMapper.getListByHeight(height);
     }
 
+    @Override
+    public  List<BlockGetDTO> getListByBlockhash(String blockhash) {
+        return blockMapper.getListByBlockhash(blockhash);
+    }
 
 
 }
