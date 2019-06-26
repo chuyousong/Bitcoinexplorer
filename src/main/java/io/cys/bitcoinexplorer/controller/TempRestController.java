@@ -6,6 +6,7 @@ import com.googlecode.jsonrpc4j.JsonRpcHttpClient;
 import io.cys.bitcoinexplorer.api.BitcoinRestApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,7 @@ import java.util.HashMap;
 @RestController
 @RequestMapping("/temp")
 @EnableAutoConfiguration
+@CrossOrigin
 public class TempRestController {
 
     @Autowired

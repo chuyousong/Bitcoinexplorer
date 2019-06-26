@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -43,6 +44,8 @@ public class BitcoinServiceImpl implements BitcoinService {
     private TransactionDetailMapper transactionDetailMapper;
     @Autowired
     private BitcoinJsonRpcApi bitcoinJsonRpcApi;
+    private Double voutAmount = 0.0;
+    private Double vinAmount = 0.0;
 
     @Override
     @Async
@@ -63,6 +66,7 @@ public class BitcoinServiceImpl implements BitcoinService {
             block.setBits(blockJson.getString("bits"));
             block.setSize(blockJson.getInteger("size"));
             block.setWeight(blockJson.getFloat("weight"));
+            block.setOutputTotal(voutAmount);
             block.setVersion(blockJson.getInteger("version"));
             block.setNonce(blockJson.getInteger("nonce"));
             block.setPreviousBlock(blockJson.getString("previousblockhash"));
@@ -80,6 +84,7 @@ public class BitcoinServiceImpl implements BitcoinService {
         logger.info("结束同步");
     }
 
+
     @Override
     @Transactional
     public void syncTransactions(JSONObject txJson, String blockhash, Date time, Integer confirmations) throws Throwable {
@@ -91,8 +96,10 @@ public class BitcoinServiceImpl implements BitcoinService {
         transactions.setConfirmations(confirmations);
         transactions.setSize(txJson.getInteger("size"));
         transactions.setWeight(txJson.getFloat("weight"));
+        transactions.setTotalOutput(voutAmount);
+        transactions.setTotalInput(vinAmount);
+        transactions.setAmount(voutAmount-vinAmount);
         transactionsMapper.insert(transactions);
-
         syncTxDetail(txJson,txid);
     }
 
@@ -112,6 +119,7 @@ public class BitcoinServiceImpl implements BitcoinService {
             JSONObject jsonObject = new JSONObject((LinkedHashMap) voutObj);
             TransactionDetail txDetail = new TransactionDetail();
             txDetail.setAmount(jsonObject.getDouble("value"));
+            voutAmount = jsonObject.getDouble("value");
             txDetail.setTxhash(txid);
             txDetail.setType((byte) TxDetailType.Receive.ordinal()); // 用枚举来展示 Type 带表 n
             JSONObject scriptPubKey = jsonObject.getJSONObject("scriptPubKey");
@@ -138,6 +146,7 @@ public class BitcoinServiceImpl implements BitcoinService {
 
                 TransactionDetail txDetail = new TransactionDetail();
                 txDetail.setAmount(-utxoJson.getDouble("value"));
+                vinAmount = -utxoJson.getDouble("value");
                 txDetail.setTxhash(txid);
                 txDetail.setType((byte) TxDetailType.Send.ordinal());
                 JSONObject scriptPubKey = utxoJson.getJSONObject("scriptPubKey");
@@ -153,26 +162,19 @@ public class BitcoinServiceImpl implements BitcoinService {
     }
 
 
-
-
-
-
-
-
-    @Override
-    public List<BlockListDTO> getSelectListBlockhash() {
-        return blockMapper.getSelectListBlockhash();
-    }
-
     @Override   // 通过height来获取块的详情
     public Block getListByHeight(Integer height) {
         return blockMapper.getListByHeight(height);
     }
 
     @Override
-    public  List<BlockGetDTO> getListByBlockhash(String blockhash) {
+    public  BlockGetDTO getListByBlockhash(String blockhash) {
         return blockMapper.getListByBlockhash(blockhash);
     }
 
+    @Override
+    public List<BlockListDTO> getSelectListBlockhashs() {
+        return blockMapper.getSelectListBlockhashs();
+    }
 
 }

@@ -20,11 +20,36 @@
     <result column="previous_block" jdbcType="CHAR" property="previousBlock" />
     <result column="next_block" jdbcType="CHAR" property="nextBlock" />
   </resultMap>
+  <resultMap id="BlockGetDTO" type="io.cys.bitcoinexplorer.dto.BlockGetDTO">
+    <id column="blockhash" jdbcType="CHAR" property="blockhash" />
+    <result column="number_of_transactions" jdbcType="INTEGER" property="numberOfTransactions" />
+    <result column="output_total" jdbcType="DOUBLE" property="outputTotal" />
+    <result column="estimated_transaction_volume" jdbcType="INTEGER" property="estimatedTransactionVolume" />
+    <result column="transaction_fees" jdbcType="DOUBLE" property="transactionFees" />
+    <result column="height" jdbcType="INTEGER" property="height" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="relayedy" jdbcType="VARCHAR" property="relayedy" />
+    <result column="difficulty" jdbcType="DOUBLE" property="difficulty" />
+    <result column="bits" jdbcType="VARCHAR" property="bits" />
+    <result column="size" jdbcType="INTEGER" property="size" />
+    <result column="weight" jdbcType="REAL" property="weight" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="nonce" jdbcType="INTEGER" property="nonce" />
+    <result column="block_reward" jdbcType="DOUBLE" property="blockReward" />
+    <result column="previous_block" jdbcType="CHAR" property="previousBlock" />
+    <result column="next_block" jdbcType="CHAR" property="nextBlock" />
+  </resultMap>
   <sql id="Base_Column_List">
     blockhash, number_of_transactions, output_total, estimated_transaction_volume, transaction_fees, 
     height, time, relayedy, difficulty, bits, size, weight, version, nonce, block_reward, 
     previous_block, next_block
   </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_block
+    where blockhash = #{blockhash,jdbcType=CHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from tb_block
     where blockhash = #{blockhash,jdbcType=CHAR}
@@ -230,11 +255,11 @@
   </update>
 
   <!--sql-->
-  <select id="getSelectListBlockhash" resultMap="BaseResultMap">
+  <select id="getSelectListBlockhashs" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from tb_block
-    order by height desc
+    order by  rand()
     limit 5
   </select>
   <select id="getListByHeight" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -243,11 +268,8 @@
     from tb_block
     where height = #{height,jdbcType=CHAR}
   </select>
-  <select id="getListByBlockhash" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from tb_block
-    where blockhash = #{blockhash,jdbcType=CHAR}
+  <select id="getListByBlockhash" parameterType="java.lang.String" resultMap="BlockGetDTO">
+    select * from tb_block where blockhash = #{blockhash}
   </select>
 
 </mapper>

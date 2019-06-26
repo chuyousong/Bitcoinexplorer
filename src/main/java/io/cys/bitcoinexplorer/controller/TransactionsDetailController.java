@@ -1,5 +1,6 @@
 package io.cys.bitcoinexplorer.controller;
 
+import io.cys.bitcoinexplorer.dto.AddressListDto;
 import io.cys.bitcoinexplorer.dto.TransactionGetListDTO;
 import io.cys.bitcoinexplorer.po.TransactionDetail;
 import io.cys.bitcoinexplorer.service.TransactionsDetailService;
@@ -28,8 +29,8 @@ public class TransactionsDetailController {
 
     // 通过Address查询交易详情表的所以数据
     @GetMapping("/getAddressByList")
-    public List<TransactionDetail> getAddressByList(String address){
-        List<TransactionDetail> transactionsAddress = transactionsDetailService.getListBytransactionsAddress(address);
+    public List<AddressListDto> getAddressByList(String address){
+        List<AddressListDto> transactionsAddress = transactionsDetailService.getListBytransactionsAddress(address);
         return transactionsAddress;
     }
 

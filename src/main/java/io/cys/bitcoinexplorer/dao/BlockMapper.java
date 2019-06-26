@@ -22,8 +22,7 @@ public interface BlockMapper {
 
     Block getListByHeight(@Param("height") Integer height);
 
-    List<BlockListDTO> getSelectListBlockhash();
+    BlockGetDTO getListByBlockhash(@Param("blockhash") String blockhash);
 
-
-    List<BlockGetDTO> getListByBlockhash(@Param("blockhash") String blockhash);
+    List<BlockListDTO> getSelectListBlockhashs();
 }

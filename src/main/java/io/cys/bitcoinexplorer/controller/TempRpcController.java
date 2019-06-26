@@ -3,12 +3,14 @@ package io.cys.bitcoinexplorer.controller;
 import com.alibaba.fastjson.JSONObject;
 import io.cys.bitcoinexplorer.api.BitcoinJsonRpcApi;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/temp")
+@CrossOrigin
 public class TempRpcController {
     @Autowired
     private BitcoinJsonRpcApi bitcoinJsonRpcApi;

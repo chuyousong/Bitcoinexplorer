@@ -1,5 +1,6 @@
 package io.cys.bitcoinexplorer.controller;
 
+import io.cys.bitcoinexplorer.dto.AddressListDto;
 import io.cys.bitcoinexplorer.dto.BlockGetDTO;
 import io.cys.bitcoinexplorer.dto.TransactionGetListDTO;
 import io.cys.bitcoinexplorer.po.Block;
@@ -32,23 +33,27 @@ public class SearchController {
         if(searchname != null){
             // 判断height的长度
             if(searchname.length()<8){
-                Block byHeight = bitcoinService.getListByHeight(Integer.parseInt(searchname));
-                if(byHeight != null){
-                    return byHeight;
+                String reg = "^\\d+$";
+                if(searchname.matches(reg)){
+                    Block byHeight = bitcoinService.getListByHeight(Integer.parseInt(searchname));
+                    if(byHeight != null){
+                        return byHeight;
+                         
+                    }
                 }
-                return  byHeight;
-            }else if(searchname.length()>10 && searchname.length() < 50){
+            }
+            else if(searchname.length()>10 && searchname.length() < 50){
                 // 判读地址的长度
-                List<TransactionDetail> addressByList = transactionsDetailService.getListBytransactionsAddress(searchname);
+                List<AddressListDto> addressByList = transactionsDetailService.getListBytransactionsAddress(searchname);
                 return  addressByList;
             }else if(searchname.length()==64){
                 // Block 的hash
-                List<BlockGetDTO> byBlockhash = bitcoinService.getListByBlockhash(searchname);
-                if(byBlockhash.size() != 0){
+                BlockGetDTO byBlockhash = bitcoinService.getListByBlockhash(searchname);
+                if(byBlockhash != null){
                     return  byBlockhash;
                 }
                 // transactions的hash
-                List<TransactionGetListDTO> transactionGetListDTOS = transactionsService.getListBytransactionsHash(searchname);
+                TransactionGetListDTO transactionGetListDTOS = transactionsService.getListBytransactionsHash(searchname);
                 if(transactionGetListDTOS  != null){
                     return  transactionGetListDTOS;
                 }

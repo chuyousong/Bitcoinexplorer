@@ -16,6 +16,22 @@
     <result column="feeper_weightunit" jdbcType="DOUBLE" property="feeperWeightunit" />
     <result column="btctransacted" jdbcType="DOUBLE" property="btctransacted" />
   </resultMap>
+
+  <resultMap id="TransactionGetListDTO" type="io.cys.bitcoinexplorer.dto.TransactionGetListDTO">
+    <id column="txhash" jdbcType="CHAR" property="txhash" />
+    <result column="blockhash" jdbcType="CHAR" property="blockhash" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="amount" jdbcType="DOUBLE" property="amount" />
+    <result column="size" jdbcType="INTEGER" property="size" />
+    <result column="weight" jdbcType="REAL" property="weight" />
+    <result column="confirmations" jdbcType="INTEGER" property="confirmations" />
+    <result column="total_input" jdbcType="DOUBLE" property="totalInput" />
+    <result column="total_output" jdbcType="DOUBLE" property="totalOutput" />
+    <result column="fees" jdbcType="DOUBLE" property="fees" />
+    <result column="feeper_byte" jdbcType="DOUBLE" property="feeperByte" />
+    <result column="feeper_weightunit" jdbcType="DOUBLE" property="feeperWeightunit" />
+    <result column="btctransacted" jdbcType="DOUBLE" property="btctransacted" />
+  </resultMap>
   <sql id="Base_Column_List">
     txhash, blockhash, time, amount, size, weight, confirmations, total_input, total_output, 
     fees, feeper_byte, feeper_weightunit, btctransacted
@@ -186,15 +202,15 @@
     where txhash = #{txhash,jdbcType=CHAR}
   </update>
 
-    <!--sql-->
-    <select id="getTransactions"  resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
-        from tb_transactions
-        order by time desc
-        limit 5
-    </select>
-  <select id="getListBytransactionsHash" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <!--sql-->
+  <select id="getTransactions"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_transactions
+    order by  rand()
+    limit 5
+  </select>
+  <select id="getListBytransactionsHash" parameterType="java.lang.String" resultMap="TransactionGetListDTO">
     select
     <include refid="Base_Column_List" />
     from tb_transactions

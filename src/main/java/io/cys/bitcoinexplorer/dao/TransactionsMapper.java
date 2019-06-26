@@ -22,5 +22,6 @@ public interface TransactionsMapper {
 
     List<TransactionListDTO> getTransactions();
 
-    List<TransactionGetListDTO> getListBytransactionsHash(@Param("txhash") String txhash);
+
+    TransactionGetListDTO getListBytransactionsHash(@Param("txhash") String txhash);
 }

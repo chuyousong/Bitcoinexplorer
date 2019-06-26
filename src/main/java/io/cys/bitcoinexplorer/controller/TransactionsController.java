@@ -5,6 +5,7 @@ import io.cys.bitcoinexplorer.dto.TransactionListDTO;
 import io.cys.bitcoinexplorer.po.Transactions;
 import io.cys.bitcoinexplorer.service.TransactionsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/transactions")
+@CrossOrigin
 public class TransactionsController {
 
     @Autowired
@@ -32,8 +34,8 @@ public class TransactionsController {
 
     // 通过交易的hash来进行页面的详情查找
     @GetMapping("/transactionHash")
-    public List<TransactionGetListDTO>  transactionHash(String txhash){
-        List<TransactionGetListDTO>  transactionsHash = transactionsService.getListBytransactionsHash(txhash);
+    public TransactionGetListDTO  transactionHash(String txhash){
+        TransactionGetListDTO  transactionsHash = transactionsService.getListBytransactionsHash(txhash);
         return transactionsHash;
     }
 

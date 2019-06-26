@@ -2,6 +2,7 @@ package io.cys.bitcoinexplorer.dto;
 
 import io.cys.bitcoinexplorer.po.Block;
 
+import java.util.Date;
 
 
 public class BlockListDTO  {

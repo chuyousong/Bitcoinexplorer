@@ -28,14 +28,14 @@ public class BlockController {
     // 新增块的信息
     @GetMapping("/getRecentBlocks")
     public void getRecentBlocks() throws Throwable {
-        String tempBlockhash = "0000000000003719742834dc58a1c4d65cfdfebbf28def2da167999657fc7889";
+        String tempBlockhash = "0000000000000774d581b3e1f8f06882b4d03212ddb1bfdc6cc29aa6f73a7b46";
         bitcoinService.syncBlock(tempBlockhash);
     }
 
     // 查询块的所以详情信息
     @GetMapping("/getSelectListBlocks")
     public List<BlockListDTO> getSelectListBlocks() {
-        List<BlockListDTO> seleBlock = bitcoinService.getSelectListBlockhash();
+        List<BlockListDTO> seleBlock = bitcoinService.getSelectListBlockhashs();
         return seleBlock;
     }
 
@@ -47,8 +47,8 @@ public class BlockController {
     }
     // 通过blockhash来进行块的详细查询
     @GetMapping("/getByBlockhash")
-    public List<BlockGetDTO> getByBlockhash(@RequestParam String blockhash){
-        List<BlockGetDTO> blockGetBlockhash = bitcoinService.getListByBlockhash(blockhash);
+    public BlockGetDTO getByBlockhash(@RequestParam String blockhash){
+        BlockGetDTO blockGetBlockhash = bitcoinService.getListByBlockhash(blockhash);
         return blockGetBlockhash;
     }
 }

@@ -13,8 +13,6 @@ import java.util.List;
 public interface BitcoinService {
     void syncBlock(String blockhash) throws Throwable;
 
-    List<BlockListDTO> getSelectListBlockhash();
-
     void syncTransactions(JSONObject txJson, String blockhash, Date time, Integer confirmations) throws Throwable;
 
     void syncTxDetail(JSONObject txJson,String txid) throws Throwable;
@@ -25,9 +23,11 @@ public interface BitcoinService {
 
     Block getListByHeight(@Param("height") Integer height);
 
+    BlockGetDTO getListByBlockhash(@Param("blockhash") String blockhash);
 
-    List<BlockGetDTO> getListByBlockhash(@Param("blockhash") String blockhash);
+    List<BlockListDTO> getSelectListBlockhashs();
 }
+
 
 
 

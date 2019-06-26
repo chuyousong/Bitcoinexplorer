@@ -22,7 +22,7 @@ public class TransactionsServiceImpl implements TransactionsService {
     }
 
     @Override
-    public List<TransactionGetListDTO> getListBytransactionsHash(String txhash) {
+    public TransactionGetListDTO getListBytransactionsHash(String txhash) {
         return transactionsMapper.getListBytransactionsHash(txhash);
     }
 

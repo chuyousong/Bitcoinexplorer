@@ -11,6 +11,8 @@ public class TransactionDetail {
 
     private Byte type;
 
+    private Integer confirmations;
+
     public Integer getTxDetailId() {
         return txDetailId;
     }
@@ -51,4 +53,11 @@ public class TransactionDetail {
         this.type = type;
     }
 
+    public Integer getConfirmations() {
+        return confirmations;
+    }
+
+    public void setConfirmations(Integer confirmations) {
+        this.confirmations = confirmations;
+    }
 }

@@ -8,6 +8,14 @@
     <result column="amount" jdbcType="DOUBLE" property="amount" />
     <result column="type" jdbcType="TINYINT" property="type" />
   </resultMap>
+  <resultMap id="AddressListDto" type="io.cys.bitcoinexplorer.dto.AddressListDto">
+    <id column="tx_detail_id" jdbcType="INTEGER" property="txDetailId" />
+    <result column="txhash" jdbcType="CHAR" property="txhash" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="amount" jdbcType="DOUBLE" property="amount" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="confirmations" jdbcType="INTEGER" property="confirmations" />
+  </resultMap>
   <sql id="Base_Column_List">
     tx_detail_id, txhash, address, amount, type
   </sql>
@@ -98,11 +106,8 @@
     from tb_transaction_detail
   </select>
 
-  <select id="getListBytransactionsAddress" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from tb_transaction_detail
-    where address = #{address,jdbcType=INTEGER}
+  <select id="getListBytransactionsAddress" resultMap="AddressListDto">
+    SELECT td.*,t.confirmations from tb_transactions t,tb_transaction_detail td where t.txhash=td.txhash
+    and address = #{address}
   </select>
-
 </mapper>
