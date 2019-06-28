@@ -71,3 +71,45 @@ response:
     
 
 
+## 3 通过交易的hash来进行页面的详情查找
+
+method：GET  
+url: /transactions/transactionHash?txhash=#{txhash}
+
+response:
+```json
+ [
+     {
+    "txhash": "000937056492017ae1e12afa2a4c21a6f9870ba921111dfed28955e9d06a5650",
+    "blockhash": "00000000000006fc84242689a0d1079a9f350395250c6d8971a8dd2aef73de1e",
+    "time": "2019-06-24T10:42:19.000+0000",
+    "amount": 0.031,
+    "size": 245,
+    "weight": 653,
+    "confirmations": 6,
+    "totalInput": -0.021,
+    "totalOutput": 0.01,
+    "fees": null,
+    "feeperByte": null,
+    "feeperWeightunit": null,
+    "btctransacted": null
+}
+ ]
+```
+| ResponseField     |     Type |   Description   | 
+| :--------------: | :--------:| :------: |
+|    txhash|   String |  交易hash |
+|    id|   Integer |  交易编号 |
+|    blockhash|   String |  块的hash Id |
+|    time|   Date |  产出矿的时间 |
+|    amount|   Double |  交易的量 |
+|    size|   Integer |  交易的次数 |
+|    weight|   Integer |  重量 |
+|    confirmations|   Integer |  确认 |
+|    totalinput|   Double |  总输入 |
+|    totaloutput|   Double |  总输出 |
+|    fees|   Double |  费用 |
+|    feeperbyte|   Double |  字节费 |
+|    feeperweightunit|   Double |  每磅收费 |
+|    btctransacted|   Double |  估计BTC交易 |
+
